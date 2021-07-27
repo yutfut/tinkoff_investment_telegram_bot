@@ -2,16 +2,17 @@ import os
 
 from telegram.ext import Updater, Filters, MessageHandler, CommandHandler
 
+from openapi_client import openapi
+from datetime import datetime, timedelta
+from pytz import timezone
+
 from dotenv import load_dotenv
 load_dotenv()
 
 token = os.getenv('TOKEN')
+telegram_token = os.getenv('telegram_token')
 
-updater = Updater(token='1897406367:AAGiEc8IetFxqnV1RZdyrcCYQEaoFbCuG7U')
-
-from openapi_client import openapi
-from datetime import datetime, timedelta
-from pytz import timezone
+updater = Updater(token=telegram_token)
 
 client = openapi.sandbox_api_client(token)
 client.sandbox.sandbox_register_post()
